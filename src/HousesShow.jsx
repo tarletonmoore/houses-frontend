@@ -3,7 +3,7 @@ import axios from "axios"
 import { useParams } from "react-router-dom"
 import { HousesUpdate } from "./HousesUpdate"
 
-export function HousesShow({  onUpdateHouse}) {
+export function HousesShow({  onDeleteHouse}) {
   const [house, setHouse] = useState({})
 
   const params = useParams()
@@ -28,6 +28,11 @@ export function HousesShow({  onUpdateHouse}) {
     })
     }
 
+    const handleClick = () => {
+      console.log('click')
+      onDeleteHouse(house.id)
+    }
+
   useEffect(getHouseData,[])
 
   return(
@@ -36,6 +41,9 @@ export function HousesShow({  onUpdateHouse}) {
       <p>Bedrooms: {house.bedrooms}</p>
       <p>Bathrooms: {house.bathrooms}</p>
       <p>Address: {house.address}</p>
+      <br></br>
+      <button onClick={handleClick}>Delete House</button>
+      <br></br>
       <br></br>
       <HousesUpdate house={house} onUpdateHouse={handleUpdateHouse} />
     </div>

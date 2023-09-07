@@ -40,6 +40,18 @@ axios.post("http://localhost:3000/houses.json", params).then(response => {
 //   })
 //   }
 
+const handleDeleteHouse = (id) => {
+  axios.delete(`http://localhost:3000/houses/${id}.json`).then(response => {
+    console.log(response.data)
+   
+    // delete from the posts array
+    setHouses(
+      houses.filter(house => id !== house.id)
+    )   
+    window.location.href = "/houses"   
+  })
+}
+
 useEffect(handleHousesIndex, [])
 
   return (
@@ -48,7 +60,7 @@ useEffect(handleHousesIndex, [])
       <Route path="/about" element={<About />} />
       <Route path="/houses" element={<HousesIndex houses={houses}/>} />
       <Route path="/houses/new" element={<HousesNew onCreateHouse={handleCreateHouse}/>} />
-    <Route path="/houses/:id" element={<HousesShow />}/>
+    <Route path="/houses/:id" element={<HousesShow onDeleteHouse={handleDeleteHouse}/>}/>
 
       </Routes>
     </div>
