@@ -2,8 +2,8 @@ export function HousesIndex(props) {
 console.log(props.houses)
 
   return (
-    <div>
-        <h1>All photos</h1>
+    <div id="houses-index">
+        <h1>All Houses</h1>
        {props.houses.map((house) => (
          <div key={house.id}>
            <p>Square Feet: {house.square_feet}</p>
