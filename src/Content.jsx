@@ -2,6 +2,10 @@ import { HousesIndex } from "./HousesIndex"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { HousesNew } from "./HousesNew"
+import { About } from "./About"
+import { HousesShow } from "./HousesShow"
+import { Routes, Route } from "react-router-dom";
+
 
 export function Content() {
 const [houses, setHouses] = useState([])
@@ -25,8 +29,12 @@ useEffect(handleHousesIndex, [])
 
   return (
     <div>
-      <HousesIndex houses={houses}/>
-      <HousesNew onCreateHouse={handleCreateHouse}/>
+      <Routes>
+      <Route path="/about" element={<About />} />
+      <Route path="/houses" element={<HousesIndex houses={houses}/>} />
+      <Route path="/houses/new" element={<HousesNew onCreateHouse={handleCreateHouse}/>} />
+    <Route path="/houses/:id" element={<HousesShow />}/>
+      </Routes>
     </div>
   )
 }
